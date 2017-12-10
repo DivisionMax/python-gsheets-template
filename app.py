@@ -1,9 +1,23 @@
 import pygsheets
+import datetime
 
 gc = pygsheets.authorize(outh_file='client_secret.json', outh_nonlocal=True)
+now = datetime.datetime.now()
+# Constants
+date_formatted = "%Y-%m-%d-%H_%M"
+formatted_date = now.strftimed(date_formatted)
 
-# Open spreadsheet and then workseet
-sh = gc.open('my new ssheet')
-wks = sh.sheet1
+# sheet_name = '{}'.format(formatted_date)
+sheet_name = formatted_date
 
-wks.update_cell('A1', "Hey yank this numpy array")
+# Open spreadsheet or create
+try:
+    sheet = gc.open(sheet_name)
+except pygsheets.SpreadsheetNotFound:
+    sheet = gc.create(sheet_name)
+
+if sheet:
+    worksheet = sheet.sheet1
+    
+def create_headers():
+    pass
