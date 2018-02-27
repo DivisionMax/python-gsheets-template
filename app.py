@@ -25,7 +25,3 @@ except pygsheets.SpreadsheetNotFound:
 if sheet:
     worksheet = sheet.sheet1
     create_headers()
-
-
-
-
